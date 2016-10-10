@@ -9,8 +9,8 @@ object Main extends App {
 
 	val system = ActorSystem("KidsActorSystem")
 
-  val kid1 = system.actorOf(Props[Kid], name = "Kid1")
-  val kid2 = system.actorOf(Props[Kid], name = "Kid2")			
+  val kid1 = system.actorOf(Props(new Kid(52)), name = "Kid1")
+  val kid2 = system.actorOf(Props(new Kid(54)), name = "Kid2")			
 
 	kid1 ! Poke
 	kid2 ! Feed
@@ -20,6 +20,8 @@ object Main extends App {
 	kid2 ! Feed
 	kid1 ! Feed
 	kid2 ! Poke
+	kid1 ! "size"
+	kid2 ! "size"
 
 	// val caller = self
 	// val words = List("Hey", "Ho", "Let's", "Go")
