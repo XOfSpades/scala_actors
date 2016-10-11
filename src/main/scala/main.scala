@@ -47,17 +47,6 @@ object Main extends App {
 	kid1 ! "size"
 	kid2 ! "size"
 
-	// val caller = self
-	// val words = List("Hey", "Ho", "Let's", "Go")
-	// for (word <- words) {
-	// 	actor { caller ! println(word) }
-	// }
-
-	// system.scheduler.scheduleOnce(500 milliseconds, kid1, Poke)
-	// system.scheduler.scheduleOnce(500 milliseconds, kid1, Poke)
-	// system.scheduler.scheduleOnce(500 milliseconds, kid1, Poke)
-	// system.scheduler.scheduleOnce(500 milliseconds, kid1, Poke)
-
 	Thread.sleep(1000)
 
 	system.shutdown
