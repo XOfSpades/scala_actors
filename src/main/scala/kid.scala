@@ -6,6 +6,10 @@ import akka.actor._
 case object Poke
 case object Feed
 
+object Kid {
+	def probs(initialSize: Int) :Props = Props(classOf[Kid], initialSize)
+}
+
 class Kid(initialSize :Int) extends Actor {
   var kidSize = initialSize
 

@@ -14,9 +14,6 @@ object Main extends App {
 
 	val system = ActorSystem("KidsActorSystem")
 
-	val kid1Props = Props(classOf[Kid], 52)
-	val kid2Props = Props(classOf[Kid], 54)
-
 	/*
 	You can watch other actor with ActorContext.watch(targetActorRef). 
 	To watching listening, invoke ActorContext.unwatch(targetActorRef)
@@ -34,11 +31,11 @@ object Main extends App {
 	  }
 
   val supervisor1 = BackoffSupervisor.props(
-  	backoffBuilder("Kid1", kid1Props)
+  	backoffBuilder("Kid1", Kid.probs(52))
   )
 
   val supervisor2 = BackoffSupervisor.props(
-  	backoffBuilder("Kid2", kid2Props)
+  	backoffBuilder("Kid2", Kid.probs(54))
   )
 
   val kid1 = system.actorOf(supervisor1, "Kid1Supervisor")
