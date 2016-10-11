@@ -3,10 +3,10 @@ package kid
 import akka.actor._
 
 // case classes provide a mechanism for pattern matching
-case object Poke
-case object Feed
-
 object Kid {
+  case object Poke
+  case object Feed
+
 	def probs(initialSize: Int) :Props = Props(classOf[Kid], initialSize)
 }
 
@@ -14,11 +14,11 @@ class Kid(initialSize :Int) extends Actor {
   var kidSize = initialSize
 
 	def receive = {
-		case Feed => {
+		case Kid.Feed => {
 			println("Yummy, yummy! ... BURP!")
 			kidSize += 1
 		}
-		case Poke => {
+		case Kid.Poke => {
 			println("Ow! STOP THAT!!!")
 		}
 		case "size" => {

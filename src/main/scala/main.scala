@@ -1,14 +1,9 @@
 package runtime
 
 import akka.actor._
-import akka.actor.Props
 import akka.pattern._
-import akka.pattern.BackoffOptionsImpl
-import akka.pattern.Backoff
 import scala.concurrent.duration.DurationInt
 import kid.Kid
-import kid.Poke
-import kid.Feed
 
 object Main extends App {
 
@@ -41,14 +36,14 @@ object Main extends App {
   val kid1 = system.actorOf(supervisor1, "Kid1Supervisor")
   val kid2 = system.actorOf(supervisor2, "Kid2Supervisor")
 
-	kid1 ! Poke
-	kid2 ! Feed
-	kid1 ! Feed
-	kid2 ! Poke
-	kid1 ! Poke
-	kid2 ! Feed
-	kid1 ! Feed
-	kid2 ! Poke
+	kid1 ! Kid.Poke
+	kid2 ! Kid.Feed
+	kid1 ! Kid.Feed
+	kid2 ! Kid.Poke
+	kid1 ! Kid.Poke
+	kid2 ! Kid.Feed
+	kid1 ! Kid.Feed
+	kid2 ! Kid.Poke
 	kid1 ! "size"
 	kid2 ! "size"
 

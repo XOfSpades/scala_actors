@@ -8,7 +8,6 @@ import akka.actor._
 import org.scalatest.FunSuite
  
 import kid.Kid
-import kid.Feed
 
 class KidSpec extends FunSuite {
   test ("A kid has kidSize after initializing") {
@@ -19,7 +18,7 @@ class KidSpec extends FunSuite {
 
   	assert(testKid.getKidSize == 52)
 
-  	testKidRef ! Feed
+  	testKidRef ! Kid.Feed
   	assert(testKid.getKidSize == 53)
 	}
 }
