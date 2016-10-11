@@ -18,7 +18,7 @@ class Kid(initialSize :Int) extends Actor {
 			println("Ow! STOP THAT!!!")
 		}
 		case "size" => {
-			println("Current size is " + kidSize)
+			println("Current size is " + getKidSize)
 		}
 	}
 
