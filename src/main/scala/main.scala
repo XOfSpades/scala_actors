@@ -14,8 +14,8 @@ object Main extends App {
 
 	val system = ActorSystem("KidsActorSystem")
 
-	val kid1Props = Props(new Kid(52))
-	val kid2Props = Props(new Kid(54))
+	val kid1Props = Props(classOf[Kid], 52)
+	val kid2Props = Props(classOf[Kid], 54)
 
 	/*
 	You can watch other actor with ActorContext.watch(targetActorRef). 
