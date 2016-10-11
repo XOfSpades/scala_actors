@@ -11,6 +11,8 @@ object Kid {
 }
 
 class Kid(initialSize :Int) extends Actor {
+	// import context._
+
   var kidSize = initialSize
 
 	def receive = {
@@ -25,6 +27,11 @@ class Kid(initialSize :Int) extends Actor {
 			println("Current size is " + getKidSize)
 		}
 	}
+
+  // def getPath {
+  // 	var kid1Path = context.actorSelection("/user/Kid1Supervisor/Kid1")
+  //   println(kid1Path)
+  // }
 
 	def getKidSize:Int = {
 		return kidSize
