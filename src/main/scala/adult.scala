@@ -11,7 +11,7 @@ object Adult {
 	case object MeasureKids
 	case object CountKids
 	case object KillKids
-  case class Menance(message: String)
+  final case class Menance(message: String)
 
 	def props() :Props = Props(classOf[Adult])
 }
