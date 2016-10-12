@@ -30,7 +30,7 @@ object Main extends App {
   )
 
   val supervisor2 = BackoffSupervisor.props(
-  	backoffBuilder("Kid2", Kid.probs(54))
+  	backoffBuilder("Kid2", Kid.defaultProps())
   )
 
   val kid1 = system.actorOf(supervisor1, "Kid1Supervisor")
