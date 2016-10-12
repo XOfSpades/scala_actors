@@ -33,22 +33,28 @@ object Main extends App {
 
   adult ! Adult.MakeKid
   adult ! Adult.CountKids
+  adult ! Adult.MeasureKids
   adult ! Adult.PokeKids
   adult ! Adult.FeedKids
   adult ! Adult.FeedKids
   adult ! Adult.MakeKid
   adult ! Adult.CountKids
+  adult ! Adult.MeasureKids
   adult ! Adult.PokeKids
   adult ! Adult.FeedKids
   adult ! Adult.FeedKids
   adult ! Adult.PokeKids
   adult ! Adult.MeasureKids
 
-  Thread.sleep(1000)
+  Thread.sleep(100)
 
   adult ! Adult.KillKids
 
-	Thread.sleep(1000)
+	Thread.sleep(100)
+
+	adult ! Adult.CountKids
+
+  Thread.sleep(100)
 
 	system.shutdown
 }
