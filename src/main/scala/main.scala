@@ -43,7 +43,10 @@ object Main extends App {
   adult ! Adult.FeedKids
   adult ! Adult.PokeKids
   adult ! Adult.MeasureKids
-  // adult ! Adult.KillKids
+
+  Thread.sleep(1000)
+
+  adult ! Adult.KillKids
 
 	Thread.sleep(1000)
 

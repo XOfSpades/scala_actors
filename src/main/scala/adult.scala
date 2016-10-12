@@ -18,8 +18,6 @@ object Adult {
 class Adult extends Actor {
   val log = Logging(context.system, this)
 
-  var lastSender = context.system.deadLetters
-
 	def receive = {
 		case Adult.MakeKid => {
 			log.info("Adult received MakeChild")
@@ -38,13 +36,13 @@ class Adult extends Actor {
 		case Adult.KillKids => {
 			log.info ("Adult received KillKids")
 			context.children.foreach {
-				kid => context.stop(kid); lastSender = sender()
+				kid => context.stop(kid)
 			}
 		}
 		case Adult.CountKids => {
 			println("I have " + context.children.size + " kids")
 		}
-		case Terminated(_) => lastSender ! "Done"
+		case Terminated(reference) => println("Killed my kid: " + reference)
 		case _ => log.error("Human received unknown message")
 	}
 
