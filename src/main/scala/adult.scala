@@ -2,7 +2,7 @@ package human
 
 import akka.actor.{ Props, Actor, Terminated }
 import akka.event.Logging
-import human.Kid
+import human.Kid.{Poke, Feed, Size}
 
 object Adult {
 	case object MakeKid
@@ -11,6 +11,7 @@ object Adult {
 	case object MeasureKids
 	case object CountKids
 	case object KillKids
+  case class Menance(message: String)
 
 	def props() :Props = Props(classOf[Adult])
 }
@@ -32,6 +33,9 @@ class Adult extends Actor {
 		}
 		case Adult.MeasureKids => {
 			doForAllChildren(Kid.Size)
+		}
+		case Adult.Menance(message) => {
+			println("Adult got message: " + message)
 		}
 		case Adult.KillKids => {
 			log.info ("Adult received KillKids")

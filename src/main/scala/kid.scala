@@ -3,6 +3,7 @@ package human
 import akka.actor.Props
 import akka.actor.Actor
 import akka.event.Logging
+import human.Adult.Menance
 
 // case classes provide a mechanism for pattern matching
 object Kid {
@@ -35,6 +36,9 @@ class Kid(initialSize :Int) extends Actor {
 		case Kid.Poke => {
 			log.info("Kid was poked.")
 			println("Ow! STOP THAT!!!")
+			sender() ! Adult.Menance(
+				"Stop that or I will sue you. This is child abuse!!!"
+			)
 		}
 		case Kid.Size => {
 			log.info("Check kids size.")
