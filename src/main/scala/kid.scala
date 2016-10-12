@@ -1,4 +1,4 @@
-package kid
+package human
 
 import akka.actor.Props
 import akka.actor.Actor
@@ -8,6 +8,7 @@ import akka.event.Logging
 object Kid {
   case object Poke
   case object Feed
+  case object Size
 
 	def probs(initialSize: Int) :Props = Props(classOf[Kid], initialSize)
 	def defaultProps() :Props = Props(classOf[Kid])
@@ -35,12 +36,12 @@ class Kid(initialSize :Int) extends Actor {
 			log.info("Kid was poked.")
 			println("Ow! STOP THAT!!!")
 		}
-		case "size" => {
+		case Kid.Size => {
 			log.info("Check kids size.")
 			println("Current size is " + getKidSize)
 		}
 		case _ => {
-			log.error("Unknown message received")
+			log.error("Kid received unknown message")
 		}
 	}
 

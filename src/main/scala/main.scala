@@ -3,7 +3,7 @@ package runtime
 import akka.actor._
 import akka.pattern._
 import scala.concurrent.duration.DurationInt
-import kid.Kid
+import human.{ Kid, Adult } 
 
 object Main extends App {
 
@@ -25,27 +25,25 @@ object Main extends App {
 	  	)
 	  }
 
-  val supervisor1 = BackoffSupervisor.props(
-  	backoffBuilder("Kid1", Kid.probs(52))
+  val supervisor = BackoffSupervisor.props(
+  	backoffBuilder("Adult1", Adult.props())
   )
 
-  val supervisor2 = BackoffSupervisor.props(
-  	backoffBuilder("Kid2", Kid.defaultProps())
-  )
+  val adult = system.actorOf(supervisor, "AdultSupervisor")
 
-  val kid1 = system.actorOf(supervisor1, "Kid1Supervisor")
-  val kid2 = system.actorOf(supervisor2, "Kid2Supervisor")
-
-	kid1 ! Kid.Poke
-	kid2 ! Kid.Feed
-	kid1 ! Kid.Feed
-	kid2 ! Kid.Poke
-	kid1 ! Kid.Poke
-	kid2 ! Kid.Feed
-	kid1 ! Kid.Feed
-	kid2 ! Kid.Poke
-	kid1 ! "size"
-	kid2 ! "size"
+  adult ! Adult.MakeKid
+  adult ! Adult.CountKids
+  adult ! Adult.PokeKids
+  adult ! Adult.FeedKids
+  adult ! Adult.FeedKids
+  adult ! Adult.MakeKid
+  adult ! Adult.CountKids
+  adult ! Adult.PokeKids
+  adult ! Adult.FeedKids
+  adult ! Adult.FeedKids
+  adult ! Adult.PokeKids
+  adult ! Adult.MeasureKids
+  // adult ! Adult.KillKids
 
 	Thread.sleep(1000)
 

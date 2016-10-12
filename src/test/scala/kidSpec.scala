@@ -1,3 +1,5 @@
+package human
+
 import akka.testkit.TestActorRef
 import scala.concurrent.duration._
 import scala.concurrent.Await
@@ -7,7 +9,7 @@ import akka.actor._
 
 import org.scalatest.FunSuite
  
-import kid.Kid
+import human.Kid
 
 class KidSpec extends FunSuite {
   test ("A kid has kidSize after initializing") {
