@@ -3,30 +3,30 @@ package runtime
 import akka.actor._
 import akka.pattern._
 import scala.concurrent.duration.DurationInt
-import human.{ Kid, Adult } 
+import human.{ Kid, Adult }
 
 object Main extends App {
 
-	val system = ActorSystem("KidsActorSystem")
+  val system = ActorSystem("KidsActorSystem")
 
-	/*
-	You can watch other actor with ActorContext.watch(targetActorRef). 
-	To watching listening, invoke ActorContext.unwatch(targetActorRef)
-	*/
+  /*
+  You can watch other actor with ActorContext.watch(targetActorRef).
+  To watching listening, invoke ActorContext.unwatch(targetActorRef)
+  */
 
-  val backoffBuilder = 
+  val backoffBuilder =
     (childName: String, childProbs: Props) => {
-	  	Backoff.onStop(
-	  		childProps = childProbs,
-	  		childName = childName,
-	  		minBackoff = 1.second,
-	  		maxBackoff = 16.seconds,
-	  		randomFactor = 0.0 // creates some noise to vary intervals (in %)
-	  	)
-	  }
+      Backoff.onStop(
+        childProps = childProbs,
+        childName = childName,
+        minBackoff = 1.second,
+        maxBackoff = 16.seconds,
+        randomFactor = 0.0 // creates some noise to vary intervals (in %)
+      )
+    }
 
   val supervisor = BackoffSupervisor.props(
-  	backoffBuilder("Adult1", Adult.props())
+    backoffBuilder("Adult1", Adult.props())
   )
 
   val adult = system.actorOf(supervisor, "AdultSupervisor")
@@ -50,11 +50,11 @@ object Main extends App {
 
   adult ! Adult.KillKids
 
-	Thread.sleep(100)
+  Thread.sleep(100)
 
-	adult ! Adult.CountKids
+  adult ! Adult.CountKids
 
   Thread.sleep(100)
 
-	system.shutdown
+  system.shutdown
 }
